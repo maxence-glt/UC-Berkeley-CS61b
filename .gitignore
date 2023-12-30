@@ -24,3 +24,5 @@ hs_err_pid*
 replay_pid*
 /.idea/
 library-fa23/
+library-fa23
+out/

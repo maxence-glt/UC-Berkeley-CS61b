@@ -1,6 +1,9 @@
 package Homeworks.HW00;
 
 public class printIndexed {
+    /*
+    * @param input input text
+    *  */
     static void printIndexedMethod(String input) {
         int length = input.length() - 1;
         int iter = 0;

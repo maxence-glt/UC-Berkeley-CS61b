@@ -1,43 +1,15 @@
 package Scratchwork;
 
-import java.util.Arrays;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.HashMap;
-
 public class Scratch {
-    public static void main(String[] args) {
-        // Dynamic List
-        List<String> lst = new ArrayList<>();
-        lst.add("zero");
-        lst.add("one");
-        System.out.println(lst);
+    // smallDog weight is 5
+    // mediumDog weight is 25
+    // hugeDog weight is 150
 
-        // Fixed List
-        int[] array = {4, 7, 10};
-        array[0] = 5;
-        System.out.println(Arrays.toString(array));
+    // the list of many dogs has fixed size 4
+    // [smallDog, hugeDog, Dog(130)]
 
-        // Sets
-        Set<Integer> set = new HashSet<>();
-        set.add(1);
-        set.add(1);
-        set.add(2);
-        // set.remove(2);
-        System.out.println(set.size());
-        System.out.println(set);
-
-        // Dictionaries and Maps
-        Map<String, String> map = new HashMap<>();
-        map.put("hello", "hi");
-        map.put("hello", "goodbye");
-        System.out.println(map.get("hello"));
-        System.out.println(map);
-        for (String key : map.keySet()) {
-            System.out.println(key);
-        }
-    }
+    // bark
+    // woof
+    // woof
+    // error
 }
