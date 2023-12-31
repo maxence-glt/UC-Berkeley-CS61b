@@ -1,3 +1,6 @@
+package Labs.Lab01.tests;
+
+import Labs.Lab01.src.Arithmetic;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
