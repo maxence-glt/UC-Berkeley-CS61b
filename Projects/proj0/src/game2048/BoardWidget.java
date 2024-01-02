@@ -23,15 +23,15 @@ class BoardWidget extends Pad {
 
     /** Colors of empty squares and grid lines. */
     static final Color
-        EMPTY_SQUARE_COLOR = new Color(205, 192, 176),
-        BAR_COLOR = new Color(184, 173, 158);
+            EMPTY_SQUARE_COLOR = new Color(205, 192, 176),
+            BAR_COLOR = new Color(184, 173, 158);
 
     /** Bar width separating tiles and length of tile's side
      *  (pixels). */
     static final int
-        TILE_SEP = 15,
-        TILE_SIDE = 100,
-        TILE_SIDE_SEP = TILE_SEP + TILE_SIDE;
+            TILE_SEP = 15,
+            TILE_SIDE = 100,
+            TILE_SIDE_SEP = TILE_SEP + TILE_SIDE;
 
     /** Font used for numbering on tiles with <= 2 digits. */
     static final Font TILE_FONT2 = new Font("SansSerif", 1, 48);
@@ -68,25 +68,25 @@ class BoardWidget extends Pad {
     /** List of tile values and corresponding background and foreground
      *  color values. */
     private static final int[][] TILE_COLOR_MAP = {
-        { 2, 0x776e65, 0xeee4da },
-        { 4, 0x776e65, 0xede0c8 },
-        { 8, 0xf9f6f2, 0xf2b179 },
-        { 16, 0xf9f6f2, 0xf59563 },
-        { 32, 0xf9f6f2, 0xf67c5f },
-        { 64, 0xf9f6f2, 0xf65e3b },
-        { 128, 0xf9f6f2, 0xedcf72 },
-        { 256, 0xf9f6f2, 0xedcc61 },
-        { 512, 0xf9f6f2, 0xedc850 },
-        { 1024, 0xf9f6f2, 0xedc53f },
-        { 2048, 0xf9f6f2, 0xedc22e },
+            { 2, 0x776e65, 0xeee4da },
+            { 4, 0x776e65, 0xede0c8 },
+            { 8, 0xf9f6f2, 0xf2b179 },
+            { 16, 0xf9f6f2, 0xf59563 },
+            { 32, 0xf9f6f2, 0xf67c5f },
+            { 64, 0xf9f6f2, 0xf65e3b },
+            { 128, 0xf9f6f2, 0xedcf72 },
+            { 256, 0xf9f6f2, 0xedcc61 },
+            { 512, 0xf9f6f2, 0xedc850 },
+            { 1024, 0xf9f6f2, 0xedc53f },
+            { 2048, 0xf9f6f2, 0xedc22e },
     };
 
     static {
         /* { "LABEL", "TEXT COLOR (hex)", "BACKGROUND COLOR (hex)" } */
         for (int[] tileData : TILE_COLOR_MAP) {
             TILE_COLORS.put(tileData[0],
-                            new Color[] { new Color(tileData[1]),
-                                          new Color(tileData[2]) });
+                    new Color[] { new Color(tileData[1]),
+                            new Color(tileData[2]) });
         }
     }
 
@@ -117,20 +117,20 @@ class BoardWidget extends Pad {
             FontMetrics metrics = g.getFontMetrics();
             g.setColor(OVERLAY_COLOR);
             g.drawString("GAME OVER",
-                         (_boardSide
-                          - metrics.stringWidth("GAME OVER")) / 2,
-                         (2 * _boardSide + metrics.getMaxAscent()) / 4);
+                    (_boardSide
+                            - metrics.stringWidth("GAME OVER")) / 2,
+                    (2 * _boardSide + metrics.getMaxAscent()) / 4);
         }
     }
 
     /** Render TILE on G. */
     private void render(Graphics2D g, Tile tile) {
         int col0 = tile.col(),
-            row0 = tile.row(),
-            col1 = tile.next().col(),
-            row1 = tile.next().row();
+                row0 = tile.row(),
+                col1 = tile.next().col(),
+                row1 = tile.next().row();
         int dcol = Integer.compare(col1, col0),
-            drow = Integer.compare(row1, row0);
+                drow = Integer.compare(row1, row0);
 
         float vcol, vrow;
         if (_distMoved >= max(abs(col0 - col1), abs(row0 - row1))) {
@@ -141,7 +141,7 @@ class BoardWidget extends Pad {
         }
 
         int ulx = Math.round(vcol * TILE_SIDE_SEP + TILE_SEP),
-            uly = Math.round((_size - vrow - 1) * TILE_SIDE_SEP + TILE_SEP);
+                uly = Math.round((_size - vrow - 1) * TILE_SIDE_SEP + TILE_SEP);
 
         if (tile.value() < 100) {
             g.setFont(TILE_FONT2);
@@ -159,13 +159,13 @@ class BoardWidget extends Pad {
         }
         g.setColor(TILE_COLORS.get(tile.value())[1]);
         g.fillRect(ulx - bloom, uly - bloom, 2 * bloom + TILE_SIDE,
-                   2 * bloom + TILE_SIDE);
+                2 * bloom + TILE_SIDE);
         g.setColor(TILE_COLORS.get(tile.value())[0]);
 
         String label = Integer.toString(tile.value());
         g.drawString(label,
-                     ulx + (TILE_SIDE - metrics.stringWidth(label)) / 2,
-                     uly + (2 * TILE_SIDE + metrics.getMaxAscent()) / 4);
+                ulx + (TILE_SIDE - metrics.stringWidth(label)) / 2,
+                uly + (2 * TILE_SIDE + metrics.getMaxAscent()) / 4);
 
     }
 
@@ -240,7 +240,7 @@ class BoardWidget extends Pad {
             repaint();
             tick();
             _distMoved = Math.min(dist,
-                                  _distMoved + TICK * MOVE_DELTA / 1000.0f);
+                    _distMoved + TICK * MOVE_DELTA / 1000.0f);
         }
 
 

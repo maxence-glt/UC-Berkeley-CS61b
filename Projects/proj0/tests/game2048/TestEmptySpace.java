@@ -62,6 +62,9 @@ public class TestEmptySpace {
         };
 
         b = new Board(rawVals);
+
+        System.out.println(b.tile(0 ,1));
+
         assertWithMessage("Bottom row is empty\n" + b).that(Model.emptySpaceExists(b)).isTrue();
 
     }
@@ -122,7 +125,7 @@ public class TestEmptySpace {
     @Test
     @Tag("empty-space")
     @DisplayName("Full board with valid merge")
-    public void testFullBoard() {
+    public void  testFullBoard() {
         int[][] rawVals = new int[][] {
                 {2, 2, 2, 2},
                 {2, 2, 2, 2},

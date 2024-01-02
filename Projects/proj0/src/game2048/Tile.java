@@ -53,7 +53,7 @@ public class Tile {
             return 0;
         } else {
             return Math.max(Math.abs(_row - _next.row()),
-                            Math.abs(_col - _next.col()));
+                    Math.abs(_col - _next.col()));
         }
     }
 

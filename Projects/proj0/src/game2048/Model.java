@@ -87,14 +87,19 @@ public class Model {
             maxScore = Math.max(score, maxScore);
         }
     }
-    
+
     /** Returns true if at least one space on the Board is empty.
      *  Empty spaces are stored as null.
      * */
+
     public static boolean emptySpaceExists(Board b) {
-        // TODO: Fill in this function.
-
-
+        for (int r = 0; r < b.size(); r++){
+            for (int c = 0; c < b.size(); c++){
+                if (b.tile(c, r) == null) {
+                    return true;
+                }
+            }
+        }
         return false;
     }
 
@@ -104,9 +109,13 @@ public class Model {
      * given a Tile object t, we get its value with t.value().
      */
     public static boolean maxTileExists(Board b) {
-        // TODO: Fill in this function.
-
-
+        for (int r = 0; r < b.size(); r++){
+            for (int c = 0; c < b.size(); c++){
+                if (!(b.tile(c, r) == null) && (b.tile(c, r).value() == MAX_PIECE)) {
+                    return true;
+                }
+            }
+        }
         return false;
     }
 
@@ -116,11 +125,39 @@ public class Model {
      * 1. There is at least one empty space on the board.
      * 2. There are two adjacent tiles with the same value.
      */
-    public static boolean atLeastOneMoveExists(Board b) {
-        // TODO: Fill in this function.
 
-
+    public static boolean rightLeftSame(Board b) {
+        for (int r = 0; r < b.size(); r++) {
+            for (int c = 1; c < b.size(); c++){
+                if (b.tile(c, r) == b.tile(c - 1, r)) {
+                    return true;
+                } if ((b.tile(c, r) != null && b.tile(c - 1, r) == null) || (b.tile(c, r) == null && b.tile(c - 1, r) != null)) {
+                    continue;
+                } if (b.tile(c, r).value() == b.tile(c - 1, r).value()) {
+                    return true;
+                }
+            }
+        }
         return false;
+    }
+
+    public static boolean upDownSame(Board b) {
+        for (int r = 0; r < b.size() - 1; r++) {
+            for (int c = 0; c < b.size(); c++){
+                if (b.tile(c, r) == b.tile(c, r + 1)) {
+                    return true;
+                } if ((b.tile(c, r) != null && b.tile(c, r + 1) == null) || (b.tile(c, r) == null && b.tile(c, r + 1) != null)) {
+                    continue;
+                } if (b.tile(c, r).value() == b.tile(c, r + 1).value()) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    public static boolean atLeastOneMoveExists(Board b) {
+        return (emptySpaceExists(b) || rightLeftSame(b) || upDownSame(b));
     }
 
     /** Tilt the board toward SIDE.
@@ -178,5 +215,16 @@ public class Model {
     public int hashCode() {
         return toString().hashCode();
     }
-}
 
+    public static void main(String[] args) {
+        int[][] rawVals = new int[][] {
+                {2, 4, 2, 4},
+                {4, 8, 4, 2},
+                {2, 16, 4, 8},
+                {4, 8, 4, 2},
+        };
+        Board b = new Board(rawVals);
+
+        System.out.println(upDownSame(b));
+    }
+}

@@ -27,3 +27,5 @@ library-fa23/
 library-fa23
 out/
 library-fa23/**
+/Projects/proj0/.idea/
+/Projects/proj0/proj0.iml
