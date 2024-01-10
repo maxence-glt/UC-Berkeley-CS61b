@@ -1,6 +1,8 @@
 package game2048;
 
 import java.util.Formatter;
+import java.util.HashMap;
+import java.util.Map;
 
 
 /** The state of a game of 2048.
@@ -172,12 +174,47 @@ public class Model {
      *    value, then the leading two tiles in the direction of motion merge,
      *    and the trailing tile does not.
      * */
-    public void tilt(Side side) {
-        // TODO: Modify this.board (and if applicable, this.score) to account
-        // for the tilt to the Side SIDE.
 
+
+    public void columnHelper(int column) {
+        int max_row = 3;
+
+        for (int row = 2; row >= 0; row -= 1) {
+            for (int max = max_row; max > row; max -= 1) {
+                Tile t_max = board.tile(column, max);
+                Tile t_curr = board.tile(column, row);
+
+                if (t_curr == null) {
+                    continue;
+
+                } if (t_max == null) {
+                    board.move(column, max_row, t_curr);
+                    continue;
+
+                } if (t_max.value() == t_curr.value()) {
+                    score += t_max.value() * 2;
+                    board.move(column, max_row, t_curr);
+                    max_row -= 1;
+
+                } else
+                    max_row -= 1;
+            }
+        }
+    }
+
+    public void tilt(Side side) {
+        System.out.println();
+        boolean changed = false;
+        board.setViewingPerspective(side);
+//        System.out.println(board.);
+
+        for (int c = 0; c < board.size(); c += 1) {
+            columnHelper(c);
+
+        }
 
         checkGameOver();
+        board.setViewingPerspective(Side.NORTH);
     }
 
 

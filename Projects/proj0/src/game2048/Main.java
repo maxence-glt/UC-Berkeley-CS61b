@@ -18,10 +18,10 @@ public class Main {
 
     /** Custom starting state of the game. Useful for debugging. */
     static final Model CUSTOM_START = new Model(new int[][]{
-            {2, 0, 2, 128},
-            {0, 0, 8, 0},
-            {8, 64, 0, 128},
-            {4, 64, 8, 256},
+            {0, 0, 0, 0},
+            {0, 0, 0, 0},
+            {0, 0, 0, 4},
+            {0, 0, 2, 0},
     }, 0, 0);
 
     public static void main(String[] args) {
