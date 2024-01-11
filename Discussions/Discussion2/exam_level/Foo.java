@@ -1,4 +1,4 @@
-package Discussions.Discussion2.Exam_level;
+package Discussions.Discussion2.exam_level;
 
 public class Foo {
     public int x, y;

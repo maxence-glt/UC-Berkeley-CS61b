@@ -1,6 +1,4 @@
-package Discussions.Discussion2.Exam_level;
-
-import java.util.Arrays;
+package Discussions.Discussion2.exam_level;
 
 public class Main {
     public static void main(String[] args) {

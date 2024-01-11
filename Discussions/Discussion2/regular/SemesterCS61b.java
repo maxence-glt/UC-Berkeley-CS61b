@@ -1,6 +1,4 @@
-package Discussions.Discussion2.Introduction_to_Java;
-
-import java.util.Arrays;
+package Discussions.Discussion2.regular;
 
 public class SemesterCS61b {
     public static String universityName = "UC Berkeley";
