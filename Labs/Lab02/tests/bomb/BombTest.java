@@ -1,5 +1,6 @@
 package Labs.Lab02.tests.bomb;
 
+import Labs.Lab02.src.bomb.BombMain;
 import org.junit.jupiter.api.*;
 
 import java.io.ByteArrayOutputStream;
