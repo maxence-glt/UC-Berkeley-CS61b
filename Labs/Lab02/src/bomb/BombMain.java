@@ -11,7 +11,7 @@ public class BombMain {
 
         String password2 = "";
 
-        for (int x = 0; x < 1337; x++)
+        for (int x = 0; x < 1337 ; x++)
             password2 += "a ";
 
         password2 += "-81201430";
