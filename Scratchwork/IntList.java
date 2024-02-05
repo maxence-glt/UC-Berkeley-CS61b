@@ -22,7 +22,7 @@ public class IntList {
             return -1;
 
         if (x == 0)
-            return this.first;
+            return first;
 
         return rest.get(x - 1);
     }
