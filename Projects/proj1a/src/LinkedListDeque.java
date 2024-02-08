@@ -38,11 +38,6 @@ public class LinkedListDeque<T> implements Deque<T> {
 
     @Override
     public void addLast(T x) {
-//        Node newNode = new Node(x, sentinel);
-//        sentinel.prev.next = newNode;
-//        newNode.next = sentinel;
-//        newNode.prev = sentinel.prev.prev;
-//        newNode.prev.next = newNode;
         Node newNode = new Node(x, sentinel);
         newNode.prev = sentinel.prev;
         sentinel.prev = newNode;
@@ -64,31 +59,69 @@ public class LinkedListDeque<T> implements Deque<T> {
 
     @Override
     public boolean isEmpty() {
+        if (sentinel.next == sentinel) {
+            return true;
+        }
         return false;
     }
 
     @Override
     public int size() {
-        return 0;
+        return size;
     }
 
     @Override
     public T removeFirst() {
-        return null;
+        if (isEmpty()) {
+            return null;
+        }
+        Node removeNode = sentinel.next;
+        T returnVal = (T) removeNode.item;
+        sentinel.next = removeNode.next;
+        removeNode.next.prev = sentinel;
+        return returnVal;
     }
 
     @Override
     public T removeLast() {
-        return null;
+        if (isEmpty()) {
+            return null;
+        }
+        Node removeNode = sentinel.prev;
+        T returnVal = (T) removeNode.item;
+        sentinel.prev = removeNode.prev;
+        removeNode.prev.next = sentinel;
+        return returnVal;
     }
 
     @Override
     public T get(int index) {
-        return null;
+        Node<T> list = sentinel.next;
+        if (size - 1 < index || index < 0) {
+            return null;
+        } else {
+            while (index != 0) {
+                list = list.next;
+                index -= 1;
+            }
+            return list.item;
+        }
+
+    }
+
+    public T getRecursiveHelper (int index, Node list) {
+        if (size - 1 < index || index < 0) {
+            return null;
+        } if (index == 0) {
+            return (T) list.item;
+        } else {
+            return getRecursiveHelper(index - 1, list.next);
+        }
     }
 
     @Override
     public T getRecursive(int index) {
-        return null;
+        Node<T> list = sentinel.next;
+        return getRecursiveHelper(index, list);
     }
 }

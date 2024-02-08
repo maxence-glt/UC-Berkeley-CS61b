@@ -32,10 +32,10 @@ public class LinkedListDequeTest {
          Deque<String> lld1 = new LinkedListDeque<>();
 
          lld1.addFirst("back"); // after this call we expect: ["back"]
-//         assertThat(lld1.toList()).containsExactly("back").inOrder();
+         assertThat(lld1.toList()).containsExactly("back").inOrder();
 
          lld1.addFirst("middle"); // after this call we expect: ["middle", "back"]
-//         assertThat(lld1.toList()).containsExactly("middle", "back").inOrder();
+         assertThat(lld1.toList()).containsExactly("middle", "back").inOrder();
 
          lld1.addFirst("front"); // after this call we expect: ["front", "middle", "back"]
          assertThat(lld1.toList()).containsExactly("front", "middle", "back").inOrder();
@@ -75,4 +75,71 @@ public class LinkedListDequeTest {
      }
 
 //     Below, you'll write your own tests for LinkedListDeque.
+    @Test
+    public void isEmptyTest() {
+        Deque<String> lld1 = new LinkedListDeque<>();
+        assertThat(lld1.isEmpty()).isEqualTo(true);
+
+        lld1.addFirst("back");
+        lld1.addFirst("middle");
+        lld1.addFirst("front");
+        assertThat(lld1.isEmpty()).isEqualTo(false);
+    }
+
+    @Test
+    public void sizeTest() {
+        Deque<String> lld1 = new LinkedListDeque<>();
+        assertThat(lld1.size()).isEqualTo(0);
+
+        lld1.addFirst("back");
+        lld1.addFirst("middle");
+        lld1.addFirst("front");
+        assertThat(lld1.size()).isEqualTo(3);
+    }
+
+    @Test
+    public void getTest() {
+        Deque<String> lld1 = new LinkedListDeque<>();
+        assertThat(lld1.get(0)).isEqualTo(null);
+
+        lld1.addFirst("back");
+        lld1.addFirst("middle");
+        lld1.addFirst("front");
+        assertThat(lld1.get(1)).isEqualTo("middle");
+    }
+
+    @Test
+    public void getRecursiveTest() {
+        Deque<String> lld1 = new LinkedListDeque<>();
+        assertThat(lld1.getRecursive(0)).isEqualTo(null);
+
+        lld1.addFirst("back");
+        lld1.addFirst("middle");
+        lld1.addFirst("front");
+        assertThat(lld1.getRecursive(1)).isEqualTo("middle");
+    }
+
+    @Test
+    public void removeFirst() {
+        Deque<String> lld1 = new LinkedListDeque<>();
+        assertThat(lld1.getRecursive(0)).isEqualTo(null);
+
+        lld1.addFirst("back");
+        lld1.addFirst("middle");
+        lld1.addFirst("front");
+        lld1.removeFirst();
+        assertThat(lld1.toList()).containsExactly("middle", "back").inOrder();
+    }
+
+    @Test
+    public void removeLast() {
+        Deque<String> lld1 = new LinkedListDeque<>();
+        assertThat(lld1.getRecursive(0)).isEqualTo(null);
+
+        lld1.addFirst("back");
+        lld1.addFirst("middle");
+        lld1.addFirst("front");
+        lld1.removeLast();
+        assertThat(lld1.toList()).containsExactly("front", "middle").inOrder();
+    }
 }
