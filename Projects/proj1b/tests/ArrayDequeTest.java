@@ -1,5 +1,6 @@
 package Projects.proj1b.tests;
 
+import Projects.proj1b.src.ArrayDeque;
 import jh61b.utils.Reflection;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -21,5 +22,33 @@ public class ArrayDequeTest {
 
     //     assertWithMessage("Found fields that are not array or primitives").that(badFields).isEmpty();
     // }
+
+    @Test
+    void testAddFirstLastGet() {
+        ArrayDeque test = new ArrayDeque();
+        for (int x = 0; x < 9; x++) {
+            test.addFirst(x);
+            test.addLast(x);
+        }
+        assertThat(test.get(0)).isEqualTo(8);
+        assertThat(test.get(9)).isEqualTo(0);
+        assertThat(test.get(10)).isEqualTo(1);
+        System.out.println(test.get(0));
+    }
+
+    @Test
+    void removeLast() {
+//        ArrayDeque test = new ArrayDeque();
+//        for (int x = 0; x < 9; x++) {
+//            test.addFirst(x);
+//            test.addLast(x);
+//        }
+//        assertThat(test.get(0)).isEqualTo(8);
+//        assertThat(test.get(9)).isEqualTo(0);
+//        assertThat(test.get(10)).isEqualTo(1);
+//        System.out.println(test.get(0));
+    }
+
+
 
 }

@@ -52,9 +52,8 @@ public class SLList {
     }
 
     public static void main(String[] args) {
-        System.out.println(args[0]);
-        for (String i : args) {
-            System.out.println(i);
-        }
+        SLList test = new SLList(1);
+        test.addLast(2);
+        test.addLast(3);
     }
 }
