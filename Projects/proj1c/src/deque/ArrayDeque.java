@@ -1,5 +1,7 @@
 package Projects.proj1c.src.deque;
 
-public class ArrayDeque<T> implements Deque<T> {
+import java.util.List;
+
+public class ArrayDeque<T>{
 
 }

@@ -1,6 +1,6 @@
 package Projects.proj1c.src.gh2;
 
-import deque.Deque;
+import Projects.proj1c.src.deque.Deque;
 // TODO: maybe more imports
 
 //Note: This file will not compile until you complete the Deque implementations
