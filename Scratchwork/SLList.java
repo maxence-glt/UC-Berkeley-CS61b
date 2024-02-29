@@ -1,59 +1,122 @@
 package Scratchwork;
 
-public class SLList {
-    public static class IntNode {
-        public int item;
-        public IntNode next;
+public class SLList<Blorp> implements List61b<Blorp>  {
+    private class Node {
+        public Blorp item;
+        public Node next;
 
-        public IntNode(int i, IntNode n) {
+        public Node(Blorp i, Node n) {
             item = i;
             next = n;
         }
     }
-    private IntNode first;
+
+    private Node sentinel;
     private int size;
 
-    public int getFirst() {
-        return first.item;
+    public SLList() {
+        sentinel = new Node(null, null);
+        size = 0;
     }
 
-    public void addFirst(int x) {
-        first = new IntNode(x, first);
-        size += 1;
+    public SLList(Blorp x) {
+        sentinel = new Node(null, null);
+        sentinel.next = new Node(x, null);
+        size = 1;
     }
 
-    public void addLast(int x) {
-        IntNode p = first;
-
-        if (p == null) {
-            this.addFirst(x);
-            return;
+    public void insert(Blorp item, int position) {
+        Node p = sentinel;
+        while (position > 1 && p.next != null) {
+            position--;
+            p = p.next;
         }
+        Node newNode = new Node(item, p.next);
+        p.next = newNode;
+    }
+
+    public void addFirst(Blorp x) {
+        sentinel.next = new Node(x, sentinel.next);
+        size = size + 1;
+    }
+
+    public void addLast(Blorp x) {
+        size = size + 1;
+
+        Node p = sentinel;
 
         while (p.next != null) {
             p = p.next;
         }
-        p.next = new IntNode(x, null);
-        size += 1;
+
+        p.next = new Node(x, null);
+    }
+
+    public Blorp getFirst() {
+        return sentinel.next.item;
+    }
+
+    private Node getLastNode() {
+        Node p = sentinel;
+
+        while (p.next != null) {
+            p = p.next;
+        }
+        return p;
+    }
+
+    public Blorp getLast() {
+        Node back = getLastNode();
+        return back.item;
+    }
+
+    public Blorp get(int i) {
+        return get(i, sentinel.next);
+    }
+
+    private Blorp get(int i, Node p) {
+        if (i == 0) {
+            return p.item;
+        }
+        return get(i - 1, p.next);
     }
 
     public int size() {
         return size;
     }
 
-    public SLList() {
-        first = null;
-        size = 0;
+    public Blorp removeLast() {
+        Node back = getLastNode();
+        if (back == sentinel) {
+            return null;
+        }
+
+        Node p = sentinel;
+
+        while (p.next != back) {
+            p = p.next;
+        }
+        p.next = null;
+        return back.item;
     }
 
-    public SLList(int x) {
-        first = new IntNode(x, null);
-        size = 1;
+    public void print() {
+        System.out.println("THIS IS THE OVERRIDDEN VERSION.");
+        Node p = sentinel.next;
+        while (p != null) {
+            System.out.print(p.item + " ");
+            p = p.next;
+        }
     }
 
     public static void main(String[] args) {
-        SLList test = new SLList(1);
-        test.addLast(2);
-        test.addLast(3);
+        /* Creates a list of one integer, namely 10 */
+        SLList L = new SLList();
+        L.addLast(20);
+        L.addLast(20);
+        L.addLast(20);
+        L.addLast(20);
+        L.addLast(20);
+        System.out.println(L.size());
     }
 }
