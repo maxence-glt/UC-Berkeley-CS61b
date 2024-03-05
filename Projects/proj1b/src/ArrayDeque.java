@@ -4,7 +4,7 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ArrayDeque<T> implements Deque<T> {
+public class ArrayDeque<T> implements Deque<T>  {
     int originalFirst, nextFirst;
     int originalLast, nextLast;
     int size = 0;
@@ -53,6 +53,7 @@ public class ArrayDeque<T> implements Deque<T> {
         items = a;
         nextFirst = items.length - 1;
         nextLast = size;
+
     }
 
     @Override
