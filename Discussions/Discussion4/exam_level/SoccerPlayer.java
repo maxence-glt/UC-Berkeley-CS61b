@@ -25,4 +25,9 @@ public class SoccerPlayer extends Athlete {
 
     */
 
+    public static void main(String[] args) {
+        Person eric = new Athlete();
+        SoccerPlayer yaofu = new SoccerPlayer();
+        ((SoccerPlayer) eric).watch(yaofu);
+    }
 }
