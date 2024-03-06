@@ -118,29 +118,78 @@ public class ArrayDeque<T> implements Deque<T>  {
         return get(index);
     }
 
+    @Override
+    public Iterator<T> iterator() {
+        return new ArrayDequeIterator();
+    }
+
+    private class ArrayDequeIterator implements Iterator<T> {
+        private int wizPos;
+        public ArrayDequeIterator() {
+            wizPos = 0;
+        }
+
+        @Override
+        public boolean hasNext() {
+            return wizPos < size;
+        }
+
+        @Override
+        public T next() {
+            T returnItem = get(wizPos);
+            wizPos += 1;
+            return returnItem;
+        }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o instanceof ArrayDeque od) {
+            if (od.size != this.size)
+                return false;
+
+            for (int x = 0; x < size; x++) {
+                if (this.get(x) != od.get(x))
+                    return false;
+            }
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder returnSB = new StringBuilder("[");
+        for (int i = 0; i < size - 1; i++) {
+            returnSB.append(get(i));
+            returnSB.append(", ");
+        }
+        returnSB.append(get(size - 1));
+        returnSB.append("]");
+        return returnSB.toString();
+    }
+
+
+
     public static void main(String[] args) {
-        ArrayDeque test = new ArrayDeque();
+        ArrayDeque<Integer> test = new ArrayDeque();
         for (int x = 0; x < 20; x++) {
             test.addLast(x);
             test.addFirst(x);
         }
 
-        for (int x = 0; x < 20; x++) {
-            test.removeLast();
-            test.removeFirst();
+        Iterator<Integer> seer = test.iterator();
+
+        for (Integer i : test) {
+            System.out.println(i);
         }
 
-        System.out.println(test.get(test.size - 1));
+        Deque<String> lld1 = new ArrayDeque<>();
 
-        ArrayDeque test2 = new ArrayDeque();
+        lld1.addLast("front");
+        lld1.addLast("middle");
+        lld1.addLast("back");
 
-    }
-
-
-
-    @Override
-    public Iterator<T> iterator() {
-        return null;
+        System.out.println(lld1);
     }
 }
 

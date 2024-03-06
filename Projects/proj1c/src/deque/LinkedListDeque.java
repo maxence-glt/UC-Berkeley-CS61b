@@ -126,6 +126,73 @@ public class LinkedListDeque<T> implements Deque<T> {
 
     @Override
     public Iterator<T> iterator() {
-        return null;
+        return new LinkedListIterator();
+    }
+
+    private class LinkedListIterator implements Iterator<T> {
+        private int wizPos;
+        public LinkedListIterator() {
+            wizPos = 0;
+        }
+
+        @Override
+        public boolean hasNext() {
+            return wizPos < size;
+        }
+
+        @Override
+        public T next() {
+            T returnItem = get(wizPos);
+            wizPos += 1;
+            return returnItem;
+        }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o instanceof LinkedListDeque od) {
+            if (od.size != this.size)
+                return false;
+
+            for (int x = 0; x < size; x++) {
+                if (this.get(x) != od.get(x))
+                    return false;
+            }
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder returnSB = new StringBuilder("[");
+        for (int i = 0; i < size - 1; i++) {
+            returnSB.append(get(i));
+            returnSB.append(", ");
+        }
+        returnSB.append(get(size - 1));
+        returnSB.append("]");
+        return returnSB.toString();
+    }
+
+    public static void main(String[] args) {
+        LinkedListDeque<Integer> test = new LinkedListDeque<>();
+        for (int x = 0; x < 20; x++) {
+            test.addFirst(x);
+            test.addLast(x);
+        }
+
+        for (Integer x : test) {
+            System.out.println(x);
+        }
+
+        Deque<String> lld1 = new LinkedListDeque<>();
+
+        lld1.addLast("front");
+        lld1.addLast("middle");
+        lld1.addLast("back");
+
+        System.out.println(lld1);
+
+
     }
 }
