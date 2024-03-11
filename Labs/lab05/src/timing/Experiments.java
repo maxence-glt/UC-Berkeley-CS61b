@@ -75,26 +75,49 @@ public class Experiments {
         List<Double> times = new ArrayList<>();
         List<Integer> opCounts = new ArrayList<>();
 
-        // TODO: YOUR CODE HERE
+        for (int N = 1000; N <= 512000; N *= 2) {
+            AList<Integer> testAList = new AList<>();
+            Ns.add(N);
+            opCounts.add(100);
 
-        return null;
+            Stopwatch sw = new Stopwatch();
+            for (int z = 0; z <= N; z += 1)
+                testAList.addLast(z);
+
+            times.add(sw.elapsedTime());
+
+        }
+        return new TimingData(Ns, times, opCounts);
+
     }
-
 
     public static TimingData timeSLListGetLast() {
         List<Integer> Ns = new ArrayList<>();
         List<Double> times = new ArrayList<>();
         List<Integer> opCounts = new ArrayList<>();
 
-        // TODO: YOUR CODE HERE
+        int M = 1000;
 
-        return null;
+        for (int N = 1000; N <= 128000; N *= 2) {
+            SLList<Integer> testSLList = new SLList<>();
+            Ns.add(N);
+            opCounts.add(M);
+            System.out.println(N);
+            for (int z = 0; z <= N; z += 1)
+                testSLList.addLast(z);
 
+            Stopwatch sw = new Stopwatch();
+            for (int x = 0; x < M; x++)
+                testSLList.getLast();
+
+            times.add(sw.elapsedTime());
+        }
+        return new TimingData(Ns, times, opCounts);
     }
 
     public static void main(String[] args) {
         // TODO: Modify the following line to change the experiment you're running
-        TimingData td = exampleFibonacciExperiment();
+        TimingData td = timeSLListGetLast();
         // Modify this line to make the chart title make sense
         String title = "Naive Recursive Fibonacci";
 
