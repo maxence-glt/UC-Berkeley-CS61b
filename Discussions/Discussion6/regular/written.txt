@@ -1,0 +1,124 @@
+Discussion 6 - Regular
+Credit to UC Berkeley CS61b
+https://github.com/Berkeley-CS61B/discussions-fa23/blob/main/week06/regular/regular06.pdf
+
+1(a) Q. Order the following big-O runtimes from smallest to largest.
+        O(2 log n), O(1000000000000), O(n^n), O(n^3 + 4), O(n log n), O(0.005n), O(n!), O(2^n), O(n^2 log n)
+
+     A. O(1000000000000), O(2 log n), O(0.005n), O(n log n), O(n^2 log n), O(n^3 + 4), O(2^n), O(n!), O(n^n)
+
+ (b) Q. Say we have a function findMax that iterates through an unsorted int array one time
+        and returns the maximum element found in that array. Give the tightest lower and upper
+        bounds (Omega(_) and O(_)) of findMax in terms of N, the length of the array. Is it
+        possible to define a T(_) bound for findMax?
+
+     A. The best case / lower bound is Omega(N), where the array is N = 0 or 1 elements long.
+        The worst case / upper bound is O(N), where the array is N long.
+
+        Since Omega and O = N, T(N)
+
+ (c) Q. Give the worst case and best case runtime in terms of M and N. Assume ping is in T(1) and
+        returns an int.
+
+        for (int i = N; i > 0; i--) {
+            for (int j = 0; j <= M;j++) {
+                if (ping(i, j) > 64)
+                    break;
+            }
+        }
+
+    A. The best case / lower bound is Omega(N), where ping is true each time (ignoring the inner loop)
+       The worst case / upper bound is O(NM), where ping is false each time
+
+ (d) Q. Below we have a function that returns true if every int has a duplicate in the array, and false
+        if there is any unique int in the array. Assume sort(array) is in T(N log N) and returns
+        array sorted.
+
+        public static boolean noUniques(int[] array) {
+            array = sort(array);
+            int N = array.length;
+            for (int i = 0; i < N; i++) {
+                boolean hasDuplicate = false;
+                for (int j = 0; j < N; j++) {
+                    if (i != j && array[i] == array[j] {
+                        hasDuplicate = true;
+                    }
+                }
+                if (!hasDuplicate) return false;
+            }
+            return true;
+        }
+
+        Give the best and worst case runtime where N = array.length;
+
+    A. The best case / lower bound is Omega(N + N log N), where the first two elements are not duplicates.
+       The worst case / upper bound is O(N^2 + N log N), where all are duplicates.
+
+2(a) Q. Assume we have nine items, represented by integers 0 through 8. All items are initially
+        unconnected to each other. Draw the union find tree, draw its array representation after
+        the series of connect() and find() operations, and write down the result of find()
+        operations using WeightedQuickUnion without path compression. Break ties choosing the
+        smaller integer to be the root.
+
+        Note: find(x) returns the root of the tree for item x.
+
+        connect(2, 3);
+        connect(1, 2);
+        connect(5. 7);
+        connect(8, 4);
+        connect(7, 2);
+        find(3);
+        connect(0, 6);
+        connect(6, 4);
+        connect(6, 3);
+        find(8);
+        find(6);
+
+     A. [2, 2, -9, 2, 0, 2, 0, 5, 4]
+
+        find(3) returns 2
+        find(8) returns
+        find(6) returns
+
+        ___________________________________________
+        |                                         |
+        _____________           ________________  |
+        |           |           |              |  |
+        2--3        5--7        8--4        6--0--|
+        |
+        1
+
+ (b) Q. Below is an implementation of the find function for a Disjoint Set. Given an integer val,
+        find(val) returns the root of the set val is in. The helper method parent(int val) returns
+        the direct parent of value in the Disjoint Set representation. Assume that this implementation
+        does not use WeightedQuickUnion.
+
+        public int find(int val) {
+            int p = parent(val);
+            if (p == val) {
+                return val;
+            } else {
+                int root = find(p);
+                return root;
+            }
+        }
+
+        If N is the number of nodes in the set, what is the runtime of find in the worse case? Draw
+        out the structure of the Disjoint Set representation for this worst case.
+
+     A. T(N) since WORSE CASE scenario there is a straight line of nodes like 4--5--9--420 etc
+
+ (c) Q. Using a function setParent(int val, int newParent), which updates the value of val's parent
+        to newParent, modify find to achieve a faster runtime using path compression. You may add at
+        most one line to the provided implementation.
+
+    A. public int find(int val) {
+           int p = parent(val);
+           if (p == val) {
+               return val;
+           } else {
+               int root = find(p);
+               setParent(val, root);
+               return root;
+           }
+       }
