@@ -111,6 +111,20 @@ public class UnionFindTest {
         assertThat(uf2.returnData()).isEqualTo(testData2);
         assertThat(uf2.connected(3, 8)).isTrue();
     }
+
+    @Test
+    public void test6() {
+        int[] testWeightedData = {1, -6, 1, 1, 1, 1};
+        UnionFind weighted_uf = new UnionFind(5);
+
+        weighted_uf.union(0, 1);
+        weighted_uf.union(2, 1);
+        weighted_uf.union(3, 2);
+        weighted_uf.union(4, 3);
+        weighted_uf.union(5, 4);
+
+        assertThat(weighted_uf.returnData()).isEqualTo(testWeightedData);
+    }
 }
 
 

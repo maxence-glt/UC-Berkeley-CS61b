@@ -6,7 +6,7 @@ public class UnionFind {
      * You can assume that we are only working with non-negative integers as the items
      * in our disjoint sets.
      */
-    private int[] data;
+    private int[] data = new int[]{5, 0, 0, 2, -1, -9, 5, 5, 7, 5};
 
 
     /* Creates a UnionFind data structure holding N items. Initially, all
@@ -40,12 +40,13 @@ public class UnionFind {
         if (v > data.length)
             throw new IllegalArgumentException();
 
-        int parent = parent(v);
-
-        if (parent < 0)
+        if (parent(v) < 0)
             return v;
 
-        return find(parent);
+        while (!(parent(v) < 0))
+            v = parent(v);
+
+        return v;
     }
 
     /* Connects two items V1 and V2 together by connecting their respective
@@ -73,12 +74,12 @@ public class UnionFind {
         }
 
         if (size1 == size2) {
-//            int newSize = sizeOf(v2);
-//            data[find(v2)] = find(v1);
-//            data[find(v1)] -= newSize;
-            int newSize = sizeOf(v1);
-            data[find(v1)] = find(v2);
+            int newSize = sizeOf(v2);
+            data[find(v2)] = find(v1);
             data[find(v1)] -= newSize;
+//            int newSize = sizeOf(v1);
+//            data[find(v1)] = find(v2);
+//            data[find(v1)] -= newSize;
         }
     }
 
@@ -88,8 +89,10 @@ public class UnionFind {
 
     public static void main(String[] args) {
         UnionFind test = new UnionFind(5);
-        test.union(0, 1);
+        test.union(1, 0);
+        test.union(1, 2);
         test.union(2, 3);
-        test.union(0, 2);
+        test.union(3, 4);
+        test.union(4, 5);
     }
 }
