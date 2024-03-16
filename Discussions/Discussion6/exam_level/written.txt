@@ -1,0 +1,43 @@
+Discussion 6 - Exam-Level
+Credit to UC Berkeley CS61b
+https://github.com/Berkeley-CS61B/discussions-fa23/blob/main/week06/examlevel/examlevel06.pdf
+
+1    Q. Give the runtime of f1 and f2.
+
+     A. f1 is T(N^2) since its basically 1 + 2 + 3 + ... + inf which is N(N-1)/2
+        f2 is T(N) since it crows slower than 2N and faster than 0.5N
+
+2    Q. For each of the arrays write weather it could be an array of a
+        weighted quick union with path compression
+
+     A. A. No, as there is no element that is tracking the size
+           of the sets
+
+        B. No, the tree that has its root at 0 would not connect to 9
+
+        C. No, since we are using weighted quick union the tree would
+           not be that tall
+
+        D. Yes, tree height is fine, no cycling
+
+        E. No, the 9-8-6-1-0 is too tall
+
+        F. No, too tall
+
+3(a) Q. Suppose we have a WQU without path compression with N elements
+
+     A. 1. What is the runtime in big Omega and big O of isConnected?
+
+           Omega(1), O(log(N))
+
+        2. What is the runtime in big Omega and big O of connect?
+
+           Same as above since you use find
+
+ (b) Q. What is the runtime of addToWQU in big Omega and big O?
+
+     A. Omega(N), O(N^2 log(N))
+
+ (c) Q. What is the max and min number of matching size connections...
+
+     A. min 1, max N - 1
