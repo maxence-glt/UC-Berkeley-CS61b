@@ -61,7 +61,7 @@ public class Percolation {
     public boolean isFull(int row, int col) {
         int index = rcTo1D(row, col);
 
-        return siteGrid.connected(index, rcTo1D(row, col));
+        return siteGrid.connected(0, index + 1);
     }
 
     // number of open sites
