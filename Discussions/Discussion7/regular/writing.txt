@@ -1,0 +1,102 @@
+Discussion 7 - Exam-Level
+Credit to UC Berkeley CS61b
+https://github.com/Berkeley-CS61B/discussions-fa23/blob/main/week07/regular/regular07.pdf
+
+1    Q. Match each task to the best ADT and explain
+
+     A. 1. Set, since you don't need to know how many times each user visits,
+           but rather a list of unique users (keyword UNIQUE just like each
+           element in a set)
+
+        2. Map, since you need a key-value pair data structure
+
+        3. Stack, since it is LIFO
+
+        4. Queue, FIFO
+
+        5. List, since they are ordered and can have duplicates
+
+NOTE: Some geometric sums that may be helpful (reference)
+    1 + 2 + 3 + 4 + 5 + ... + N T(N^2)
+    1 + 2 + 4 + 7 + 16 + ... + N T(N)
+General case:
+    1 + 2 + 3 + 4 + 5 + ... + f(N) T(f(N)^2)
+    1 + 2 + 4 + 7 + 16 + ... + f(N) T(f(N))
+
+2(a) Q. For each, fill in the blank so that the function has the desired runtime
+
+     A. Desired: T(N)
+        public static void f1(int N) {
+            for (int i = 1; i < N; i++) {
+                sout();
+            }
+        }
+
+        Desired: T(log N)
+        public static void f2(int N) {
+            for (int i = 1; i < N; i * 2) {
+                sout();
+            }
+        }
+
+        Desired: T(1)
+        public static void f3(int N) {
+            for (int i = 1; i < 2; i++) {
+                sout();
+            }
+        }
+
+        Desired: T(2^N)
+        public static void f4(int N) {
+            for (int i = 1; i < 2^N; i *= 2) {
+                for (int j = 0; j < i; j++) {
+                    sout();
+                }
+            }
+        }
+
+ (b) Q. Extra - Give the worst case and best case running time in T(.)
+        notation in terms of M and N. Assume that kachow() is in T(N^2)
+        and returns a boolean.
+
+        for (int i = 0; i < N; i++) {
+            for (int j = 1; j <= M;) {
+                if (kachow()) {
+                    j++;
+                } else {
+                    j *= 2;
+                }
+            }
+        }
+
+     Q. T(MN*N^2) is worse case, T(log M N*N^2) is best
+
+3(a) Q. What is the runtime of the code below in terms of n?
+
+        public static int curse(int n) {
+            if (n <= 0) {
+                return 0;
+            } else {
+                return n + curse(n - 1);
+            }
+        }
+
+     A. T(n)
+
+ (b) Q. Can you find a runtime for the code below? (not writing it all)
+
+     A. T(N)
+
+ (c) Q. Runtime of lucy?
+
+     A. T(3^N)
+
+4(a) Q. Assume our BST is perfectly bushy. What is the runtime of a single
+        find operation in terms of N, the number of nodes in the tree?
+
+     A. T(log N)
+
+ (b) Q. How can we insert [6, 2, 5, 9, 0, -3] into an empty BST so that
+        the runtime of a single find operation is O(N)?
+
+     A. [-3, 0, 2, 5, 6, 9], all one after another
