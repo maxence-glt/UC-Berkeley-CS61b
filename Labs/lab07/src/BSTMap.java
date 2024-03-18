@@ -107,22 +107,31 @@ public class BSTMap<K extends Comparable<K>, V extends Comparable<V>> implements
 
     // print out BSTMap in order of increasing Key
     public void printInOrder() {
+        Tree newTree = tree;
+        printHelper(newTree);
+    }
 
+    public void printHelper(Tree tree) {
+        if (tree == null)
+            return;
+
+        printHelper(tree.left);
+
+        System.out.print(tree.key + " " + tree.val + '\n');
+
+        printHelper(tree.right);
     }
 
     public static void main(String[] args) {
         BSTMap<Integer, Integer> test = new BSTMap<>();
         test.put(5, 3);
         test.put(9, 5);
-//        test.put(9, 69);
-//        System.out.println(test.get(9));
-//        System.out.println(test.containsKey(-1));
-//        System.out.println(test.containsKey(9));
-//        System.out.println(test.size());
-//        test.put(7, 5);
-//        test.put(8, 5);
+        test.put(9, 69);
+        test.put(7, 5);
+        test.put(8, 5);
         test.put(2, 5);
-//        test.put(1, 5);
-//        test.put(4, 5);
+        test.put(1, 5);
+        test.put(4, 5);
+        test.printInOrder();
     }
 }
