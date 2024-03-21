@@ -1,8 +1,7 @@
 package Labs.lab07.src;
 
+import java.lang.reflect.Array;
 import java.util.*;
-
-import static com.google.common.truth.Truth.assertThat;
 
 public class BSTMap<K extends Comparable<K>, V extends Comparable<V>> implements Map61B<K, V> {
     private Tree tree;
@@ -26,7 +25,7 @@ public class BSTMap<K extends Comparable<K>, V extends Comparable<V>> implements
         size++;
     }
 
-    public Tree putHelper(Tree t, K key, V value) {
+    private Tree putHelper(Tree t, K key, V value) {
         if (t == null)
             return new Tree(key, value);
 
@@ -54,7 +53,7 @@ public class BSTMap<K extends Comparable<K>, V extends Comparable<V>> implements
         return value.val;
     }
 
-    public Tree getHelper(Tree t, K key) {
+    private Tree getHelper(Tree t, K key) {
         while (t != null && t.key.compareTo(key) != 0) {
             int cmp = t.key.compareTo(key);
 
@@ -116,7 +115,7 @@ public class BSTMap<K extends Comparable<K>, V extends Comparable<V>> implements
     }
 
     private Tree removeHelper(Tree t, K key) {
-        if (t == null) return t;
+        if (t == null) return null;
 
         int cmp = t.key.compareTo(key);
 
@@ -150,7 +149,29 @@ public class BSTMap<K extends Comparable<K>, V extends Comparable<V>> implements
     // optional
     @Override
     public Iterator<K> iterator() {
-        return null;
+        return new BSTIterator(tree);
+    }
+
+    private class BSTIterator implements Iterator<K> {
+        Tree t;
+        int index = 0;
+        List<K> keyArray = new ArrayList<>(keySet());
+
+        BSTIterator(Tree t) {
+            this.t = t;
+        }
+
+        @Override
+        public boolean hasNext() {
+            return index < size;
+        }
+
+        @Override
+        public K next() {
+            K returnItem = keyArray.get(index);
+            index++;
+            return returnItem;
+        }
     }
 
     // print out BSTMap in order of increasing Key
@@ -159,7 +180,7 @@ public class BSTMap<K extends Comparable<K>, V extends Comparable<V>> implements
         printHelper(newTree);
     }
 
-    public void printHelper(Tree tree) {
+    private void printHelper(Tree tree) {
         if (tree == null)
             return;
 
@@ -179,14 +200,9 @@ public class BSTMap<K extends Comparable<K>, V extends Comparable<V>> implements
         test.put(7, 10);
         test.put(8, 10);
         test.put(6, 10);
-        System.out.println(test.keySet());
 
-//        test.put(9, 69);
-//        test.put(7, 5);
-//        test.put(8, 5);
-//        test.put(2, 5);
-//        test.put(1, 5);
-//        test.put(4, 5);
-//        test.printInOrder();
+        for (int i : test)
+            System.out.println(i);
+
     }
 }
