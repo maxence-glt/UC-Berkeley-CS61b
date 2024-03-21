@@ -21,8 +21,6 @@ public class BSTMap<K extends Comparable<K>, V extends Comparable<V>> implements
         Tree(K k, V n) {
             key = k;
             val = n;
-            left = null;
-            right = null;
         }
     }
 
@@ -37,13 +35,15 @@ public class BSTMap<K extends Comparable<K>, V extends Comparable<V>> implements
         if (t == null)
             return new Tree(key, value);
 
-        if (t.key.compareTo(key) > 0)
+        int cmp = t.key.compareTo(key);
+
+        if (cmp > 0)
             t.left = putHelper(t.left, key, value);
 
-        else if (t.key.compareTo(key) < 0)
+        else if (cmp < 0)
             t.right = putHelper(t.right, key, value);
 
-        else if (t.key.compareTo(key) == 0) {
+        else {
             t.val = value;
             size--;
         }
@@ -61,10 +61,12 @@ public class BSTMap<K extends Comparable<K>, V extends Comparable<V>> implements
 
     public Tree getHelper(Tree t, K key) {
         while (t != null && t.key.compareTo(key) != 0) {
-            if (t.key.compareTo(key) > 0)
+            int cmp = t.key.compareTo(key);
+
+            if (cmp > 0)
                 t = t.left;
 
-            else if (t.key.compareTo(key) < 0)
+            else if (cmp < 0)
                 t = t.right;
         }
         return t;
@@ -96,7 +98,46 @@ public class BSTMap<K extends Comparable<K>, V extends Comparable<V>> implements
     // optional
     @Override
     public V remove(K key) {
-        return null;
+        if (get(key) == null)
+            return null;
+
+        V out = get(key);
+
+        tree = removeHelper(tree, key);
+        size--;
+        return out;
+    }
+
+    private Tree removeHelper(Tree t, K key) {
+        if (t == null) return t;
+
+        int cmp = t.key.compareTo(key);
+
+        if (cmp < 0)
+            t.right = removeHelper(t.right, key);
+
+        else if (cmp > 0)
+            t.left = removeHelper(t.left, key);
+
+        else {
+            if (t.left == null)
+                return t.right;
+            if (t.right == null)
+                return t.left;
+
+            t.key = predecessor(t).key;
+            t.left = removeHelper(t.left, t.key);
+        }
+        return t;
+    }
+
+    private Tree predecessor(Tree t) {
+        t = t.left;
+        while (t.right != null) {
+            t = t.right;
+        }
+
+        return t;
     }
 
     // optional
@@ -124,14 +165,21 @@ public class BSTMap<K extends Comparable<K>, V extends Comparable<V>> implements
 
     public static void main(String[] args) {
         BSTMap<Integer, Integer> test = new BSTMap<>();
-        test.put(5, 3);
-        test.put(9, 5);
-        test.put(9, 69);
-        test.put(7, 5);
-        test.put(8, 5);
-        test.put(2, 5);
-        test.put(1, 5);
-        test.put(4, 5);
-        test.printInOrder();
+        test.put(5, 10);
+        test.put(3, 10);
+        test.put(4, 10);
+        test.put(2, 10);
+        test.put(7, 10);
+        test.put(8, 10);
+        test.put(6, 10);
+
+
+//        test.put(9, 69);
+//        test.put(7, 5);
+//        test.put(8, 5);
+//        test.put(2, 5);
+//        test.put(1, 5);
+//        test.put(4, 5);
+//        test.printInOrder();
     }
 }
