@@ -1,11 +1,6 @@
 package Labs.lab07.src;
 
-import Scratchwork.SLList;
-import edu.princeton.cs.algs4.BST;
-
-import java.util.Iterator;
-import java.util.Set;
-import java.util.TreeMap;
+import java.util.*;
 
 import static com.google.common.truth.Truth.assertThat;
 
@@ -89,10 +84,22 @@ public class BSTMap<K extends Comparable<K>, V extends Comparable<V>> implements
         size = 0;
     }
 
+    ArrayList<K> newArray = new ArrayList<>();
     // optional
     @Override
     public Set<K> keySet() {
-        return null;
+        this.newArray = new ArrayList<>();
+        keySetHelper(tree);
+        return new HashSet<>(newArray);
+    }
+
+    // different order than their implementation but it works
+    private void keySetHelper(Tree t) {
+        if (t != null) {
+            keySetHelper(t.left);
+            newArray.add(t.key);
+            keySetHelper(t.right);
+        }
     }
 
     // optional
@@ -172,7 +179,7 @@ public class BSTMap<K extends Comparable<K>, V extends Comparable<V>> implements
         test.put(7, 10);
         test.put(8, 10);
         test.put(6, 10);
-
+        System.out.println(test.keySet());
 
 //        test.put(9, 69);
 //        test.put(7, 5);
