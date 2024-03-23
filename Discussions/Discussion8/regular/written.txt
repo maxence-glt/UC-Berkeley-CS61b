@@ -1,0 +1,92 @@
+Discussion 8 - Regular
+Credit to UC Berkeley CS61b
+https://github.com/Berkeley-CS61B/discussions-fa23/blob/main/week08/regular/regular08.pdf
+
+1(a) Q. Draw what the following 2-3 tree would look like after inserting
+        18, 38, 12, 13, and 20
+
+     A. <drawn on paper, basically they all go to the left>
+
+ (b) Q. Convert it into a LLRB
+
+     A. <also drawn on paper, every node with 2 elements becomes a red
+         connection>
+
+ (c) Q. If a 2-3 tree has depth H what is the maximum # of comparisons
+        done in the corresponding red-black tree to find whether a certain
+        key is present
+
+     A. 2 times the height of the 2-3 tree + 2
+
+ (d) Q. Describe all balancing opps needed after inserting 9 to the LLRB
+
+     A. rotate left(9)
+        rotate left(10)
+        color flip(9)
+        color flip(10)
+
+2(a) Q. Categorize each of these as either valid or invalid hash functions
+
+     A. return -1;
+        This is valid as it is consistent (it will return the same value
+        each time) and deterministic (two equal objects will both return
+        -1).
+        It is bad as it has no spread whatsoever, and will result in a
+        linked list.
+
+        return intValue() * intValue();
+        This is valid.
+        It isn't great as it isn't random.
+
+        return super.hashCode();
+        This is invalid as an objects memory address is virtually random,
+        so two objects with the same value will have different memory
+        addresses.
+
+        return (int) (new Date()).getTime();
+        This is invalid as it neither deterministic nor consistent. Two of
+        the same objects will get different hashCodes based on when they
+        are initialized.
+
+        return intValue() + 3;
+        This is valid, and OK since if all integers are distinct there
+        won't be overlap.
+
+ (b1)Q. If you were able to modify a key that has been inserted into a
+        HashMap would you be able to retrieve the entry again later?
+
+     A. No, since an entry's place is based on the key when first entering
+        it. If we change the key, the HashMap won't change it's place, so
+        our get() operation will not work correctly.
+        Of course it MIGHT be possible that it randomly gets the same hash
+        code as it's original key so it won't matter.
+
+ (b2)Q. When you value that has been nserted into a HasMap will you be
+        able to retrive that entry again.
+
+     A. It should not change anything
+
+3(a) Q. [0]
+        [1] ('Brown bananas', 1) -> ('Burritos', 10) -> ('Buffalo wings', 8) -> ('Banh mi', 9)
+        [2]
+        [3] ('Dim sum', 10)
+        [4] ('Escargot', 5)
+        [5]
+        [6]
+        [7] ('Hashbrowns', 7)
+        [8]
+        [9]
+        [10]
+        [11]
+        [12]
+        [13]
+        [14]
+        [15]
+
+        in python, write ord('<CHAR>') - 97 % 16 to get each position
+
+ (b) Q. What is a potential problem and how can we solve it?
+
+     A. We can get a huge linked list of B's - or any letter, as it isn't
+        random enough - which we can solve by having a better hashCode
+        funtion
