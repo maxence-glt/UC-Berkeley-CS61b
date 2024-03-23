@@ -1,0 +1,84 @@
+Discussion 7 - Exam-Level
+Credit to UC Berkeley CS61b
+https://github.com/Berkeley-CS61B/discussions-fa23/blob/main/week08/regular/regular08.pdf
+
+1(a) Q. Desired runtime: T(N^2)
+        for (int i = 1; i < N; i++) {
+            for (int j = 1; j < i; j = ___) {
+                sout("Blah blah");
+            }
+        }
+
+     A. ___ = j + 1
+
+ (b) Q. Desired runtime: T(log(N))
+        for (int i = 1; i < N; i *= 2) {
+            for (int j = 1; j < ___; j = j * 2) {
+                sout("Blah blah");
+            }
+        }
+
+     A. ___ = constant
+
+ (c) Q. Desired runtime: T(2^N)
+        for (int i = 1; i < N; i++) {
+            for (int j = 1; j < ___; j++) {
+                sout("Blah blah");
+            }
+        }
+
+     A. ___ = 2^i
+
+ (d) Q. Desired runtime: T(N^3)
+        for (int i = 1; i < ___; i *= 2) {
+            for (int j = 1; j < N * N; j = ______) {
+                sout("Blah blah");
+            }
+        }
+
+     A. ___ = 2^N
+        ______ = j += 1
+
+        short python visual for the first part I made:
+        x = 1
+        i = 1
+        while (x < 2**100):
+            x *= 2
+            i += 1
+        print(i) you see that there are 100 calls to x *= 2 when you pow 2 and 100
+
+2(a) Q. Using the function g (on PDF), what is the runtime of the following
+        function calls? Write each in terms of N.
+
+     A. g(N, 1): T(N)
+
+        g(N, 2): T(N^2) since you only branch 1 extra time
+
+ (b) Q. Find Omega() and O() after changing certain parts of the algo
+
+     A. g(N, 2): Omega(N), O(2^N)
+
+        g(N, N): Omega(N), O(N^N)
+
+3(a) Q. Give an example binary tree for which brokenIsBST fails.
+
+     A. It fails when there is a node bigger than the root node, but
+        only when it is atleast two levels lower
+
+ (b) Q. Now, write a correct isBST
+
+     A. public static boolean isBST(BST T) {
+            return isBSTHelper(_______);
+        }
+
+        public static boolean isBSTHelper(BST T, int min, int max) {
+            if (T == null)
+                return false;
+
+            if (T. key < min || T.key > max)
+                return false;
+
+            else
+                return isBSTHelper(T.left, min, T.key)
+                        && isBSTHelper(T.right, T.key, max);
+        }
