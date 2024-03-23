@@ -1,6 +1,8 @@
 package Projects.proj2a.src.ngrams;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.TreeMap;
 
 /**
@@ -27,15 +29,21 @@ public class TimeSeries extends TreeMap<Integer, Double> {
      */
     public TimeSeries(TimeSeries ts, int startYear, int endYear) {
         super();
-        // TODO: Fill in this constructor.
+
+        for (Map.Entry<Integer, Double> entry : ts.entrySet()) {
+            Integer newKey = entry.getKey();
+
+            if (ts.get(newKey) >= startYear && ts.get(newKey) <= endYear)
+                this.put(newKey, entry.getValue());
+        }
+
     }
 
     /**
      * Returns all years for this TimeSeries (in any order).
      */
     public List<Integer> years() {
-        // TODO: Fill in this method.
-        return null;
+        return new ArrayList<>(keySet());
     }
 
     /**
@@ -43,8 +51,7 @@ public class TimeSeries extends TreeMap<Integer, Double> {
      * Must be in the same order as years().
      */
     public List<Double> data() {
-        // TODO: Fill in this method.
-        return null;
+        return new ArrayList<>(values());
     }
 
     /**
@@ -57,8 +64,18 @@ public class TimeSeries extends TreeMap<Integer, Double> {
      * should store the value from the TimeSeries that contains that year.
      */
     public TimeSeries plus(TimeSeries ts) {
-        // TODO: Fill in this method.
-        return null;
+        TimeSeries out = new TimeSeries();
+        out.putAll(this);
+
+        for (Map.Entry<Integer, Double> entry : ts.entrySet()) {
+            Integer newKey = entry.getKey();
+            if (out.containsKey(newKey))
+                out.put(newKey, out.get(newKey) + entry.getValue());
+            else
+                out.put(newKey, entry.getValue());
+        }
+
+        return out;
     }
 
     /**
@@ -71,10 +88,32 @@ public class TimeSeries extends TreeMap<Integer, Double> {
      * If TS has a year that is not in this TimeSeries, ignore it.
      */
     public TimeSeries dividedBy(TimeSeries ts) {
-        // TODO: Fill in this method.
-        return null;
+        TimeSeries out = new TimeSeries();
+
+        for (Map.Entry<Integer, Double> entry : this.entrySet()) {
+            Integer thisKey = entry.getKey();
+            Double thisValue = entry.getValue();
+
+            if (!ts.containsKey(thisKey))
+                throw new IllegalArgumentException();
+
+            out.put(thisKey, thisValue / (ts.get(thisKey)));
+        }
+
+        return out;
     }
 
-    // TODO: Add any private helper methods.
-    // TODO: Remove all TODO comments before submitting.
+    public static void main(String[] args) {
+        TimeSeries catPopulation = new TimeSeries();
+        catPopulation.put(1991, 0.0);
+        catPopulation.put(1992, 100.0);
+        catPopulation.put(1994, 200.0);
+
+
+        TimeSeries dogPopulation = new TimeSeries();
+        dogPopulation.put(1992, 400.0);
+        dogPopulation.put(1994, 500.0);
+
+        System.out.println(dogPopulation.dividedBy(catPopulation));
+    }
 }

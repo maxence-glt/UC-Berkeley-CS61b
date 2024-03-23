@@ -21,6 +21,7 @@ public class TimeSeriesTest {
         catPopulation.put(1992, 100.0);
         catPopulation.put(1994, 200.0);
 
+
         TimeSeries dogPopulation = new TimeSeries();
         dogPopulation.put(1994, 400.0);
         dogPopulation.put(1995, 500.0);

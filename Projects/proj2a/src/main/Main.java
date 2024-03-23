@@ -1,6 +1,7 @@
 package Projects.proj2a.src.main;
 
 import Projects.proj2a.src.browser.NgordnetServer;
+import Projects.proj2a.src.ngrams.NGramMap;
 
 public class Main {
     public static void main(String[] args) {
@@ -13,12 +14,11 @@ public class Main {
         NGramMap ngm = new NGramMap(wordFile, countFile);
 
         */
-
+        NGramMap wordMap = new NGramMap("data/ngrams/top_14377_words.csv","data/ngrams/total_counts.csv");
         hns.startUp();
-        hns.register("history", new DummyHistoryHandler());
-        hns.register("historytext", new DummyHistoryTextHandler());
+        hns.register("history", new HistoryHandler(wordMap));
+        hns.register("historytext", new HistoryTextHandler(wordMap));
 
         System.out.println("Finished server startup! Visit http://localhost:4567/ngordnet_2a.html");
     }
 }
- //test
