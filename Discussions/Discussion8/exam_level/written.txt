@@ -1,0 +1,6 @@
+Discussion 8 - Exam-Level
+Credit to UC Berkeley CS61b
+https://github.com/Berkeley-CS61B/discussions-fa23/blob/main/week08/examlevel/examlevel08.pdf
+
+1(a) Q. Given the LLRB, perform the following insertions and draw the final
+        LLRB.
