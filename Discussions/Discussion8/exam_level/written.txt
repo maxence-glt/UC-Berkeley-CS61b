@@ -4,3 +4,10 @@ https://github.com/Berkeley-CS61B/discussions-fa23/blob/main/week08/examlevel/ex
 
 1(a) Q. Given the LLRB, perform the following insertions and draw the final
         LLRB.
+
+     A. 1.
+        2. rR(9), cF(7), cF(5)
+        3. rL(1)
+        4.
+        5. rL(8), rR(9), cF(8.5), rL(7)
+
