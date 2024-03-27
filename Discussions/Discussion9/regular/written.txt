@@ -1,0 +1,84 @@
+Discussion 9 - Regular
+Credit to UC Berkeley CS61b
+https://github.com/Berkeley-CS61B/discussions-fa23/blob/main/week09/regular/regular09.pdf
+
+1(a) Q. Write the following traversals of the BST below.
+
+     A. Pre-order: [10, 3, 1, 7, 12, 11, 14, 13, 15]
+        In-order: [1, 3, 7, 10, 11, 12, 13, 14, 15]
+        Post-order: [1, 7, 3, 11, 13, 15, 14, 12, 10]
+        Level-order: [10, 3, 12, 1, 7, 11, 14, 13, 15]
+
+ (b) Q. Write the graph as an adjacency matrix, then as an adjacency list.
+        What would be different if the graph were undirected instead?
+
+     A.     A   B   C   D   E   F   G
+        A   0   1   0   1   0   0   0
+
+        B   0   0   1   0   0   0   0
+
+        C   0   0   0   0   0   1   0
+
+        D   0   1   0   0   1   1   0
+
+        E   0   0   0   0   0   1   0
+
+        F   0   0   0   0   0   0   0
+
+        G   0   0   0   0   0   1   0
+
+        -----------------------------
+
+        A   B, D
+
+        B   C
+
+        C   F
+
+        D   B, F, E
+
+        E   F
+
+        F
+
+        G   F
+
+ (c) Q. Write the order in which the DFS pre-order and post-order graph
+        traversals would visit nodes in the same directed graph above,
+        starting from vertex A. Break ties alphabetically.
+
+     A. Pre-order: [A, B, C, F, D, E]
+        Post-order: [F, C, B, E, D, A]
+
+2(a) Q. Assume that we have a binary min-heap (smallest value on top) data
+        structure called MinHeap that has properly implemented the insert
+        and removeMin methods. Draw the heap and its corresponding array
+        representation after each of the operations below:
+
+     A. h.insert('f');  [-, 'f']
+        h.insert('h');  [-, 'f', 'h']
+        h.insert('d');  [-, 'd', 'h', 'f']
+        h.insert('b');  [-, 'b', 'd', 'f', 'h']
+        h.insert('c');  [-, 'b', 'c', 'f', 'h', 'd']
+        h.removeMin();  [-, 'c', 'd', 'f', 'h']
+        h.removeMin();  [-, 'd'. 'h', 'f']
+
+ (b) Q. Write an integer max-heap without writing a whole new datastructure.
+        Can you use your min-heap to mimic the behavior of a max-heap? We
+        want to be able to get the largest item in the heap in constant time,
+        and add things to the heap in T(log N) time, as a normal max heap.
+
+     A. When adding a number you negate it, when removing it negate it
+        again.
+
+3(a) Q. Describe an algorithm that will print the elements in a TST in
+        descending order.
+
+     A. psuedo-code:
+
+        if null return
+        traverse down right node
+        visit middle
+        if (middle node exists)
+            recurse traveral on middle node
+        traverse down left node
