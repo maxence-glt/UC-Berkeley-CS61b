@@ -1,0 +1,64 @@
+Discussion 9 - Exam-Level
+Credit to UC Berkeley CS61b
+https://github.com/Berkeley-CS61B/discussions-fa23/blob/main/week09/examlevel/examlevel09.pdf
+
+1(a) Q. If a graph with n vertices has n - 1 edges, it must be a tree.
+
+     A. No as there could be a disconnected node to a graph
+
+
+
+     Q. Every edge is looked at exactly twice in every iteration of DFS on
+        a connected, undirected graph
+
+     A. True
+
+
+     Q. In BFS, let d(v) be the minimum number of edges between a vertex v
+        and the start vertex. For any two vertices u, v in the fringe,
+        |d(u) - d(v)| is always less than 2.
+
+     A. True
+
+ (b) Q. Given an undirected graph, provide an algorithm that returns true if
+        a cycle exists in the graph, and false otherwise. Also, provide a T
+        bound for the worse case runtime of your algorithm.
+
+     A. Do a DFS and if we've visited a node alread then there is a cycle.
+
+2    Q. Remove the following blanks related to min-heaps. Let N be the number
+        of elements in the min-heap. For the entirety of this question,
+        assume the elements in the min-heap are distinct.
+
+     A. removeMin has a best case runtime of _____ (1) and a worst case runtime
+        of _____(log N)
+
+        insert has a best case runtime of _____(1) nad a worst case runtime
+        of a worst case runtime of _____(log N)
+
+        A _____(pre order) or _____(BFS) traversal on a min=heap may output the
+          elements in sorted order. Assume there are at least 3 elements in the
+          min-heap.
+
+        The fourth smallest element in a min-heap with 1000 elements can appear
+        in _____(14) places in the heap.
+
+        Given a min-heap with 2^N - 1 distinct elements, for an element
+        >   to be on the second level it must be less than _____(2^N-1 - 2)
+            element(s) and greater than _____(1) element(s)
+        >   to be on the bottommost level it must be less than _____(0) and
+            greater than _____(N - 1) elements
+
+3(a) Q. Determine the operations executed and their appropriate order.
+
+     A. 1. removeMin() [-, B, D, C, G, E, F]
+        2. insert(X)
+        3. removeMin()
+        4. insert(A)
+
+ (b) Q. Fill in the following comparisons with either >, < or ?
+
+     A. 1. X ? D
+        2. X > C
+        3. B > C
+        4. G < X
