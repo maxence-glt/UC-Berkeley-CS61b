@@ -21,7 +21,7 @@ public abstract class NgordnetQueryHandler implements Route {
         return Arrays.asList(requestedWords);
     }
 
-    private static browser.NgordnetQuery readQueryMap(QueryParamsMap qm) {
+    private static NgordnetQuery readQueryMap(QueryParamsMap qm) {
         List<String> words = commaSeparatedStringToList(qm.get("words").value());
 
         int startYear;
