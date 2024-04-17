@@ -1,0 +1,92 @@
+Discussion 10 - Exam-Level
+Credit to UC Berkeley CS61b
+https://github.com/Berkeley-CS61B/discussions-fa23/blob/main/week10/examlevel/examlevel10.pdf
+
+1(a) Q. Run Djikstra's Algorithm on the grpah above starting from vertex A, breaking ties
+        alphabetically. Fill in how the priority values change below. When you remove a
+        node from the fringe, mark it with a check and leave it blank for the subsequent
+        rows. Stop when you remove G. Also sketch the resulting shortest paths tree in the end.
+
+     A. Node        A       B       C       D       E       F       G       H
+
+        Start       0       inf     inf     inf     inf     inf     inf     inf
+
+        Iter 1      X       1       inf     inf     3       inf     inf     inf
+
+        Iter 2              X       3       inf     3       5       inf     inf
+
+        Iter 3                      X       inf     3       4       inf     inf
+
+        Iter 4                              inf     X       4       inf     inf
+
+        Iter 5                              6               X       8       inf
+
+        Iter 6                              X                       7       10
+
+        Iter 7                                                      X
+
+ (b) Q. The heuristic distance from all nodes to G is defined below. Run A* from A and with
+        G as a goal. For each entry in the tabe below, fill in the distance, followed by the
+        priority value of each node, seperated by a comma. is the heuristic admissible?
+
+     A. u           A       B       C       D       E       F       G       H
+        h(u, G)     9       7       4       1       10      3       0       5
+
+
+        Node        A       B       C       D       E       F       G       H
+
+        Start       0, 9    inf     inf     inf     inf     inf     inf     inf
+
+        Iter 1      X       (1, 8)  inf     inf     (3, 13) inf     inf     inf
+
+        Iter 2              X       (3, 7)  inf     (3, 13) (5, 8)  inf     inf
+
+        Iter 3                      X       inf     (3, 13) (4, 7)  inf     inf
+
+        Iter 4                              (6, 7)  (3, 13) X       (8, 8)  inf
+
+        Iter 5                              X       (3, 13)         (7, 7)  (11, 16)
+
+        Iter 6                                                      X
+
+2(a) Q. If all edge weights are equal and positive, the BFS starting from node A will
+        return the shortest path from a node A to a target B.
+
+     A. True
+
+ (b) Q. If all edges have distinct weights, the shortest path between any two vertices
+        is unique.
+
+     A. False
+
+ (c) Q. Adding a constant positive integer k to all edge weights will not affect any
+        shortest path between two vertices.
+
+     A. False
+
+ (d) Q. Multiplying a constant positive integer k to all edge weights will not affect
+        and shortest path between vertices.
+
+     A. True
+
+3(a) Q. For the graph above, list the edges in the order they're added to the MST by
+        Kruskal's by Kruskal's and Prim's algorithm. Assume Prim's algorithm starts
+        at vertex A. Assume ties are broken in alphabetical order. Denote each edge
+        as a pair of vertices (e.g. AB is the edge from A to B).
+
+     A. Prim's algorithm order: AB, BC, BG, BE, EF, CD
+        Kruskal's algorithm order: EF, BC, BE, BG, AB, CD
+
+ (b) Q. Adding 1 to the smallest edge of a graph G with unique edge weights must change
+        the total weight of its MST.
+
+     A. True
+
+ (c) Q. If all the weights in an MST are unique, there is only one possible MST.
+
+     A. True
+
+ (d) Q. The shortest path from vertex u to vertex v in a graph G is the same as the
+        shortest path from u to v using only edges in T, where T is MST of G.
+
+     A. False
