@@ -1,0 +1,35 @@
+Discussion 10 - Regular
+Credit to UC Berkeley CS61b
+https://github.com/Berkeley-CS61B/discussions-fa23/blob/main/week10/regular/regular10.pdf
+
+1(a) Q. Run Dijkstra's algorithm to find the shortest paths from A to every other
+        vertex. You may find it helpful to keep track of the priority queue. We have
+        provided a table to keep track of best distances, and the adjacent vertex that
+        has an edge going to the target vertex in the current shortest paths tree so far.
+
+     A.         A       B       C       D       E       F       G
+
+        DistTo  0       1       4       2       5       6       7
+
+        EdgeTo  /       A       B       A       D       C       F
+
+ (b) Q. Given the wieghts and heuristic values for the graph above, what path would A*
+        search return, starting from A and with G as a goal?
+
+     A.         A       B       C       D       E       F       G
+
+        DistTo  0       1       4       2       7       6       7
+
+        EdgeTo  /       A       B       A       A       C       F
+
+ (c) A. Yes
+
+2(a) Q. Find a valid MST for the graph above using Kruskal's algorithm, then Prim's.
+
+     A. Kruskal: {A, C, E, D, B}
+        Prim: {A, C, E, D, B}
+
+ (b) Q. Are the above MST's different or the same? Is the MST for this graph unique?
+
+     A. They are the same
+
